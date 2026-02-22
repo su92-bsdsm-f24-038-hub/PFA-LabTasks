@@ -1,0 +1,70 @@
+QUICK START GUIDE
+
+STEP 1: Install Python packages
+Run this command in terminal:
+pip install -r requirements.txt
+
+STEP 2: Download YOLO model files
+Run this command:
+python download_models.py
+
+Wait for the download to complete. The yolov3.weights file is about 236 MB.
+
+STEP 3: Start the Flask server
+Run this command:
+python app.py
+
+STEP 4: Open your browser
+Go to: http://localhost:5000
+
+STEP 5: Upload and detect
+- Click "Select Image or Video" and choose a file
+- Enter location details or use "Get Current Location" button
+- Click "Detect Animals" button
+- View results with detection boxes and map alert
+
+SUPPORTED ANIMALS:
+Birds, Cats, Dogs, Horses, Sheep, Cows, Elephants, Bears, Zebras, Giraffes
+
+SUPPORTED FORMATS:
+Images: .jpg, .jpeg, .png
+Videos: .mp4, .avi
+
+TROUBLESHOOTING:
+
+Problem: ImportError for cv2
+Solution: pip install opencv-python
+
+Problem: YOLO weights not found
+Solution: Run download_models.py again
+
+Problem: Port 5000 already in use
+Solution: Change port in app.py (last line)
+
+Problem: Map not showing
+Solution: Check internet connection (needs OpenStreetMap)
+
+FEATURES:
+1. Real-time animal detection
+2. Bounding boxes around detected animals
+3. Confidence scores
+4. Interactive map with markers
+5. Alert circles for herd locations
+6. Support for both images and videos
+7. Geolocation integration
+
+BONUS FEATURES IMPLEMENTED:
+- OpenStreetMap integration for location marking
+- Geolocation API support
+- Red alert markers for detected herds
+- Circle radius showing detection zone
+- Popup alerts with animal count
+
+TECHNOLOGY STACK:
+- Backend: Flask (Python web framework)
+- Detection: OpenCV + YOLOv3
+- Frontend: HTML, CSS, JavaScript
+- Map: Leaflet.js + OpenStreetMap
+- Image Processing: NumPy
+
+For questions or issues, check README.md file.

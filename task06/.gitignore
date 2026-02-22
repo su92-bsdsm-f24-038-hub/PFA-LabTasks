@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+static/uploads/*
+static/results/*
+models/yolov3.weights
+models/yolov3.cfg
+*.mp4
+*.avi
+*.jpg
+*.png
+.DS_Store
+.vscode/

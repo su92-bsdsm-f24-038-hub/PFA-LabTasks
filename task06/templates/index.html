@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Animal Herd Detection System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+        }
+        
+        input[type="text"],
+        input[type="number"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        
+        input[type="file"] {
+            padding: 8px;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background: #5568d3;
+        }
+        
+        .info {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            color: #444;
+        }
+        
+        .location-btn {
+            background: #28a745;
+            margin-top: 5px;
+        }
+        
+        .location-btn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Animal Herd Detection</h1>
+        
+        <div class="info">
+            Upload an image or video to detect animals. The system will mark detected animals and show their location on a map.
+        </div>
+        
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label>Select Image or Video:</label>
+                <input type="file" name="file" accept="image/*,video/*" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Location Name:</label>
+                <input type="text" name="location" placeholder="Enter location name" value="Lahore, Pakistan">
+            </div>
+            
+            <div class="form-group">
+                <label>Latitude:</label>
+                <input type="number" step="any" name="latitude" placeholder="31.5204" value="31.5204">
+            </div>
+            
+            <div class="form-group">
+                <label>Longitude:</label>
+                <input type="number" step="any" name="longitude" placeholder="74.3587" value="74.3587">
+            </div>
+            
+            <button type="button" class="location-btn" onclick="getLocation()">Get Current Location</button>
+            
+            <button type="submit">Detect Animals</button>
+        </form>
+    </div>
+    
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    document.querySelector('input[name="latitude"]').value = position.coords.latitude;
+                    document.querySelector('input[name="longitude"]').value = position.coords.longitude;
+                    alert('Location updated!');
+                });
+            } else {
+                alert('Geolocation not supported by browser');
+            }
+        }
+    </script>
+</body>
+</html>
