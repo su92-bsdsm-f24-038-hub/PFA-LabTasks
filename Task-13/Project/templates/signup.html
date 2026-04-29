@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up | AI Business Support</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body class="auth-page">
+    <div class="gradient-orb orb-one"></div>
+    <div class="gradient-orb orb-two"></div>
+
+    <main class="auth-wrapper">
+        <section class="glass-card auth-card">
+            <h1>Create Account</h1>
+            <p class="muted">Set up your AI support workspace in seconds.</p>
+
+            <form id="signupForm" class="auth-form">
+                <label for="username">Username</label>
+                <input id="username" name="username" type="text" placeholder="At least 3 characters" required />
+
+                <label for="password">Password</label>
+                <input id="password" name="password" type="password" placeholder="At least 6 characters" required />
+
+                <button type="submit" class="btn-neon">Create Account</button>
+            </form>
+
+            <p class="auth-switch">
+                Already registered?
+                <a href="{{ url_for('login') }}">Login</a>
+            </p>
+            <p id="authMessage" class="form-message"></p>
+        </section>
+    </main>
+
+    <script>
+        const signupForm = document.getElementById('signupForm');
+        const authMessage = document.getElementById('authMessage');
+
+        signupForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            authMessage.textContent = '';
+
+            const payload = {
+                username: signupForm.username.value,
+                password: signupForm.password.value,
+            };
+
+            const response = await fetch('/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
+
+            const result = await response.json();
+            if (result.success) {
+                window.location.href = result.redirect;
+            } else {
+                authMessage.textContent = result.message || 'Signup failed.';
+            }
+        });
+    </script>
+</body>
+</html>

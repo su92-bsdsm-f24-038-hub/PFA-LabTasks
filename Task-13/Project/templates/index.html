@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | AI Business Support</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body class="dashboard-page">
+    <div class="gradient-orb orb-one"></div>
+    <div class="gradient-orb orb-two"></div>
+    <div class="gradient-orb orb-three"></div>
+
+    <div class="app-shell">
+        <aside class="chat-rail slide-in-left">
+            <div class="rail-top">
+                <h2>AI Helpdesk</h2>
+                <button id="newChatBtn" class="new-chat-btn" type="button">+ New Chat</button>
+            </div>
+
+            <section class="rail-card user-card">
+                <p class="muted">Signed in as</p>
+                <h3>{{ username }}</h3>
+                <span class="pill">RAG Powered</span>
+            </section>
+
+            <section class="rail-card upload-card">
+                <h4>Upload Knowledge Base</h4>
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <input type="file" id="fileInput" name="file" accept="application/pdf" required />
+                    <button type="submit" class="btn-neon">Upload PDF</button>
+                </form>
+                <p id="uploadMessage" class="form-message"></p>
+            </section>
+
+            <section class="rail-card history-card">
+                <h4>Conversations</h4>
+                <div id="historyList" class="history-list"></div>
+            </section>
+
+            <a class="btn-outline rail-logout" href="{{ url_for('logout') }}">Logout</a>
+        </aside>
+
+        <main class="chat-stage fade-in-up">
+            <header class="stage-header">
+                <h1>Business Support Assistant</h1>
+                <p class="muted">Ask questions from your company docs, FAQs, manuals, and support files.</p>
+            </header>
+
+            <section id="homeState" class="home-state">
+                <h2>How can I help today?</h2>
+                <p class="muted">Start a new chat, or continue from your previous conversations in the sidebar.</p>
+                <div class="quick-prompts">
+                    <button class="quick-prompt" data-prompt="Summarize our company refund policy from uploaded files.">Summarize refund policy</button>
+                    <button class="quick-prompt" data-prompt="Draft a customer response about delayed shipment support.">Draft delayed shipment reply</button>
+                    <button class="quick-prompt" data-prompt="List onboarding steps from the operations manual.">List onboarding steps</button>
+                </div>
+            </section>
+
+            <div id="chatContainer" class="chat-container"></div>
+
+            <div id="typingIndicator" class="typing hidden" aria-hidden="true">
+                <span></span><span></span><span></span>
+            </div>
+
+            <footer class="composer-wrap">
+                <form id="chatForm" class="chat-form">
+                    <input
+                        id="questionInput"
+                        name="question"
+                        type="text"
+                        placeholder="Message AI Helpdesk..."
+                        autocomplete="off"
+                        required
+                    />
+                    <button type="submit" class="btn-neon">Send</button>
+                </form>
+            </footer>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

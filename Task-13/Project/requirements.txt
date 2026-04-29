@@ -1,0 +1,10 @@
+Flask==3.0.3
+Werkzeug==3.0.3
+python-dotenv==1.0.1
+PyPDF2==3.0.1
+langchain==0.3.27
+langchain-community==0.3.31
+langchain-huggingface==0.3.1
+faiss-cpu==1.8.0.post1
+sentence-transformers==3.0.1
+openai==1.106.1
